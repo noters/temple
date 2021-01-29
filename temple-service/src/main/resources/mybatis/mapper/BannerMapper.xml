@@ -1,0 +1,20 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.development.mapper.BannerMapper">
+    <resultMap id="resultMap" type="com.development.entity.Banner">
+        <id column="id" property="id" javaType="int"/>
+        <result column="image" property="image" javaType="String"/>
+        <result column="remark" property="remark" javaType="String"/>
+        <result column="create_time" property="createTime" javaType="java.util.Date"/>
+        <result column="update_time" property="updateTime" javaType="java.util.Date"/>
+        <result column="status" property="status" javaType="String"/>
+    </resultMap>
+
+    <select id="queryList" parameterType="com.development.entity.Banner" resultType="com.development.entity.Banner">
+        select * from banner t
+        where t.status = '1'
+        <if test="image != null and image != ''">
+            and t.image = #{image}
+        </if >
+    </select>
+
+</mapper>

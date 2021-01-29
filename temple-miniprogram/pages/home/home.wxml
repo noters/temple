@@ -1,0 +1,25 @@
+<!--pages/home/home.wxml-->
+<view>
+  <view>
+    <swiper class="banner" indicator-dots="true" autoplay="true">
+      <swiper-item wx:for="{{bannerArray}}" wx:key="index">
+        <image class="banner-image" src="{{item.image}}"></image>
+      </swiper-item>
+    </swiper>
+  </view>
+
+  <view class="goods-class">
+    <view class="goods-class-block" wx:for="{{goodsClassArray}}" wx:key="index"
+    bindtap="goodsClassAction" data-index="{{index}}" data-id="{{item.id}}" data-name="{{item.name}}">
+      <image class="goods-class-image" src="{{item.image}}"></image>
+      <text class="goods-class-name">{{item.name}}</text>
+    </view>
+  </view>
+
+  <view class="goods">
+    <view class="goods-block" wx:for="{{goodsArray}}" wx:key="index"
+    bindtap="goodsAction" data-index="{{index}}" data-id="{{item.id}}" data-name="{{item.name}}">
+      <image class="goods-image" src="{{item.image}}"></image>
+    </view>
+  </view>
+</view>

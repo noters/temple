@@ -1,0 +1,22 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.development.mapper.GoodsItemMapper">
+    <resultMap id="resultMap" type="com.development.entity.GoodsItem">
+        <id column="id" property="id" javaType="int"/>
+        <result column="goods" property="goods" javaType="int"/>
+        <result column="name" property="name" javaType="String"/>
+        <result column="price" property="price" javaType="String"/>
+        <result column="remark" property="remark" javaType="String"/>
+        <result column="create_time" property="createTime" javaType="java.util.Date"/>
+        <result column="update_time" property="updateTime" javaType="java.util.Date"/>
+        <result column="status" property="status" javaType="String"/>
+    </resultMap>
+
+    <select id="queryList" parameterType="com.development.entity.GoodsItem" resultType="com.development.entity.GoodsItem">
+        select * from goods_item t
+        where t.status = '1'
+        <if test="goodsId != null and goodsId != ''">
+            and t.goods = #{goodsId}
+        </if >
+    </select>
+
+</mapper>
