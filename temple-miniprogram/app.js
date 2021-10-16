@@ -2,7 +2,7 @@
 App({
   globalData: {
     // 服务端地址及端口
-    url: 'http://192.168.1.7:8080',
+    url: 'http://192.168.1.6:8080',
     appid: 'wxb54083b395a5ca53',
     secret: 'ec385cd6dbdd12659664696530775dd0',
     userInfo: null,

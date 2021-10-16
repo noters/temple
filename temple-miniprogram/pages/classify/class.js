@@ -1,4 +1,4 @@
-// pages/home/home.js
+// pages/classify/class.js
 const app = getApp()
 Page({
 
@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    bannerArray: {},
+    active: 0,
     goodsClassArray: {},
     goodsArray: {}
   },
@@ -15,9 +15,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.loadBanner()
+    var that = this
+    that.index = options.index
+    that.id = options.id
+    that.name = options.name
+    console.log("index: " + that.index + " id: " + that.id + " name: " + that.name)
     this.loadGoodsClass()
-    this.loadGoods()
+    this.loadGoods(that.index, that.id)
   },
 
   /**
@@ -68,27 +72,9 @@ Page({
   onShareAppMessage: function () {
 
   },
-  loadBanner: function () {
+  loadGoodsClass: function() {
     var that = this
-    var url = app.globalData.url + '/banner/list'
-    wx.request({
-      url: url,
-      data: {},
-      method: 'POST',
-      success: function (result) {
-        console.log(result)
-        var resultArray = result.data.map(item => {
-          item.image = app.globalData.url + item.image
-        })
-        console.log(resultArray)
-        that.setData({
-          bannerArray: result.data
-        })
-      }
-    });
-  },
-  loadGoodsClass: function () {
-    var that = this
+    console.log("class id: " + that.id + " name: " + that.name)
     var url = app.globalData.url + '/goodsClass/list'
     wx.request({
       url: url,
@@ -107,14 +93,17 @@ Page({
       }
     });
   },
-  loadGoods: function () {
+  loadGoods: function (index, goodsClassId) {
     var that = this
-    var url = app.globalData.url + '/goods/listPage'
+    if (index == undefined && goodsClassId == undefined) {
+      index = 0
+    }
+    console.log("goods index: " + index + " classId: " + goodsClassId)
+    var url = app.globalData.url + '/goods/list'
     wx.request({
       url: url,
       data: {
-        "current":1,
-        "size": 10
+        goodsClassId: goodsClassId
       },
       method: 'POST',
       success: function (result) {
@@ -124,19 +113,15 @@ Page({
         })
         console.log(resultArray)
         that.setData({
+          active: index,
           goodsArray: result.data
         })
       }
     });
   },
   goodsClassAction: function (e) {
-    var index = e.currentTarget.dataset.index
-    var id = e.currentTarget.dataset.id
-    var name = e.currentTarget.dataset.name
-    console.log("index: " + index + " id: " + id + " name: " + name)
-    wx.navigateTo({
-      url: '/pages/classify/class?index=' + index + '&id=' + id + '&name=' + name
-    })
+    console.log("class action id: " + e.currentTarget.dataset.id + " name: " + e.currentTarget.dataset.name)
+    this.loadGoods(e.currentTarget.dataset.index, e.currentTarget.dataset.id)
   },
   goodsAction: function (e) {
     var id = e.currentTarget.dataset.id

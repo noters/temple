@@ -43,11 +43,11 @@ public class GoodsDetailController {
     // 根据商品获取商品详情
     @RequestMapping("/list")
     @ResponseBody
-    public String list(@RequestBody PageDto requestDto) {
-        log.debug("商品详情: " + requestDto);
+    public String list(@RequestBody PageDto pageDto) {
+        log.debug("商品详情: " + pageDto);
         GoodsDto goodsDto = new GoodsDto();
         Goods goods = new Goods();
-        goods.setId(requestDto.getId());
+        goods.setId(pageDto.getId());
         List<Goods> goodsList = goodsService.queryList(goods);
         if (goodsList != null && goodsList.size() == 1) {
             BeanUtils.copyProperties(goodsList.get(0), goodsDto);
@@ -55,14 +55,20 @@ public class GoodsDetailController {
             goodsClass.setId(goodsDto.getGoodsClass());
             List<GoodsClass> goodsClassList = goodsClassService.queryList(goodsClass);
             goodsDto.setGoodsClassList(goodsClassList);
+            if (goodsClassList != null && goodsClassList.size() == 1) {
+                goodsDto.setGoodsClassName(goodsClassList.get(0).getName());
+            }
             GoodsItem goodsItem = new GoodsItem();
-            goodsItem.setId(goodsDto.getId());
+            goodsItem.setGoods(goodsDto.getId());
             List<GoodsItem> goodsItemList = goodsItemService.queryList(goodsItem);
             goodsDto.setGoodsItemList(goodsItemList);
             GoodsDetail goodsDetail = new GoodsDetail();
-            goodsDetail.setId(goodsDto.getId());
+            goodsDetail.setGoods(goodsDto.getId());
             List<GoodsDetail> goodsDetailList = goodsDetailService.queryList(goodsDetail);
             goodsDto.setGoodsDetailList(goodsDetailList);
+            if (goodsDetailList != null && goodsDetailList.size() > 0) {
+                goodsDto.setImage(goodsDetailList.get(0).getImage());
+            }
             try {
                 String result = mapper.writeValueAsString(goodsDto);
                 log.debug("结果: " + result);

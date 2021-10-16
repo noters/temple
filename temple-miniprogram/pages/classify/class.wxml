@@ -1,0 +1,16 @@
+<!--pages/classify/class.wxml-->
+<view class="content">
+  <view class="goods-class">
+    <view class="goods-class-block {{active == index?'active':''}}" wx:for="{{goodsClassArray}}" wx:key="index"
+    bindtap="goodsClassAction" data-index="{{index}}" data-id="{{item.id}}" data-name="{{item.name}}">
+      <text class="goods-class-name">{{item.name}}</text>
+    </view>
+  </view>
+  <view class="goods">
+    <view class="goods-block" wx:for="{{goodsArray}}" wx:key="index"
+    bindtap="goodsAction" data-index="{{index}}" data-id="{{item.id}}" data-name="{{item.name}}">
+      <image class="goods-image" src="{{item.image}}"></image>
+      <text class="goods-name">{{item.name}}</text>
+    </view>
+  </view>
+</view>

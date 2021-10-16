@@ -10,6 +10,7 @@ import java.util.List;
 public class GoodsDto extends Goods {
 
     private String image;
+    private String goodsClassName;
     private List<GoodsClass> goodsClassList;
     private List<GoodsItem> goodsItemList;
     private List<GoodsDetail> goodsDetailList;
@@ -20,6 +21,14 @@ public class GoodsDto extends Goods {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getGoodsClassName() {
+        return goodsClassName;
+    }
+
+    public void setGoodsClassName(String goodsClassName) {
+        this.goodsClassName = goodsClassName;
     }
 
     public List<GoodsClass> getGoodsClassList() {

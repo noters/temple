@@ -39,6 +39,6 @@
   float: left;
 }
 .goods-image {
-  width: 375rpx;
-  height: 375rpx;
+  width: 370rpx;
+  height: 370rpx;
 }

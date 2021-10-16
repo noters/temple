@@ -13,6 +13,9 @@
     <select id="queryList" parameterType="com.development.entity.GoodsClass" resultType="com.development.entity.GoodsClass">
         select * from goods_class t
         where t.status = '1'
+        <if test="id != null and id != ''">
+            and t.id = #{id}
+        </if >
         <if test="name != null and name != ''">
             and t.name = #{name}
         </if >

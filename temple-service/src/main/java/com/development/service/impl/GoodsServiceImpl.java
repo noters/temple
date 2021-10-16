@@ -29,7 +29,7 @@ public class GoodsServiceImpl implements GoodsService {
     public List<Goods> queryListPage(PageDto pageDto) {
         Page<Goods> page = new Page<>(pageDto.getCurrent(), pageDto.getSize());
         Goods goods = new Goods();
-        goods.setGoodsClass(pageDto.getId());
+        goods.setGoodsClass(pageDto.getGoodsClassId());
         List<Goods> list = goodsMapper.queryListPage(page, goods);
         page = page.setRecords(list);
         return list;

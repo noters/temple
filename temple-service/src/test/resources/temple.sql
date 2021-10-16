@@ -21,7 +21,7 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `banner`;
 CREATE TABLE `banner` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `image` varchar(4000) DEFAULT NULL COMMENT '图片',
+  `image` varchar(400) DEFAULT NULL COMMENT '图片',
   `remark` varchar(200) DEFAULT NULL COMMENT '备注',
   `create_time` datetime(3) DEFAULT current_timestamp(3) COMMENT '创建日期',
   `update_time` datetime(3) DEFAULT current_timestamp(3) ON UPDATE current_timestamp(3) COMMENT '更新日期',
@@ -44,7 +44,7 @@ DROP TABLE IF EXISTS `goods_class`;
 CREATE TABLE `goods_class` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `name` varchar(200) DEFAULT NULL COMMENT '名称',
-  `image` varchar(4000) DEFAULT NULL COMMENT '图片',
+  `image` varchar(400) DEFAULT NULL COMMENT '图片',
   `remark` varchar(200) DEFAULT NULL COMMENT '备注',
   `create_time` datetime(3) DEFAULT current_timestamp(3) COMMENT '创建日期',
   `update_time` datetime(3) DEFAULT current_timestamp(3) ON UPDATE current_timestamp(3) COMMENT '更新日期',
@@ -82,7 +82,9 @@ CREATE TABLE `goods` (
 -- ----------------------------
 INSERT INTO `temple`.`goods` (`goods_class`, `name`, `title`) VALUES ('1', '商品名称', '商品名称 特价100');
 INSERT INTO `temple`.`goods` (`goods_class`, `name`, `title`) VALUES ('1', '最多四字', '商品名称2 特价200');
-INSERT INTO `temple`.`goods` (`goods_class`, `name`, `title`) VALUES ('1', '商品3', '商品名称3 特价200');
+INSERT INTO `temple`.`goods` (`goods_class`, `name`, `title`) VALUES ('1', '商品3', '商品名称3 特价300');
+INSERT INTO `temple`.`goods` (`goods_class`, `name`, `title`) VALUES ('1', '商品4', '商品名称4 特价400');
+INSERT INTO `temple`.`goods` (`goods_class`, `name`, `title`) VALUES ('2', '商品5', '商品名称5 特价500');
 
 -- ----------------------------
 -- Table structure for goods_item
@@ -113,7 +115,7 @@ DROP TABLE IF EXISTS `goods_detail`;
 CREATE TABLE `goods_detail` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `goods` int(11) DEFAULT NULL COMMENT '商品',
-  `image` varchar(4000) DEFAULT NULL COMMENT '图片',
+  `image` varchar(400) DEFAULT NULL COMMENT '图片',
   `type` varchar(4) DEFAULT NULL COMMENT '类型，0缩略图，1主图，2详情图，3描述文字',
   `note` varchar(4000) DEFAULT NULL COMMENT '描述',
   `remark` varchar(200) DEFAULT NULL COMMENT '备注',
@@ -133,5 +135,7 @@ INSERT INTO `temple`.`goods_detail` (`goods`, `image`, `type`, `note`) VALUES ('
 INSERT INTO `temple`.`goods_detail` (`goods`, `image`, `type`, `note`) VALUES ('1', null, '3', '描述文字');
 INSERT INTO `temple`.`goods_detail` (`goods`, `image`, `type`, `note`) VALUES ('2', '/images/detail5.png', '1', null);
 INSERT INTO `temple`.`goods_detail` (`goods`, `image`, `type`, `note`) VALUES ('3', '/images/detail6.png', '1', null);
+INSERT INTO `temple`.`goods_detail` (`goods`, `image`, `type`, `note`) VALUES ('4', '/images/detail7.png', '1', null);
+INSERT INTO `temple`.`goods_detail` (`goods`, `image`, `type`, `note`) VALUES ('5', '/images/detail8.png', '1', null);
 
 SET FOREIGN_KEY_CHECKS=1;

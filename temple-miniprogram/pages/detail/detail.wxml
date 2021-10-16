@@ -1,0 +1,27 @@
+<!--pages/detail.wxml-->
+<view>
+  <view>
+    <image class="goods-image" src="{{goods.image}}"></image>
+  </view>
+
+  <view class="goods">
+    <text class="goods-name">{{goods.name}}</text>
+    <text class="goods-title">{{goods.title}}</text>
+    <view class="goods-item" wx:for="{{goods.goodsItemList}}" wx:key="index"
+    bindtap="itemAction" data-index="{{index}}" data-id="{{item.id}}" data-goods="{{item.goods}}">
+      <text class="goods-text">{{item.name}}</text>
+    </view>
+  </view>
+
+  <view>
+    <view class="goods-detail" wx:for="{{goods.goodsDetailList}}" wx:key="index"
+    data-index="{{index}}" data-id="{{item.id}}" data-goods="{{item.goods}}">
+      <view wx:if="{{item.type == 2}}">
+        <image class="goods-image" src="{{item.image}}"></image>
+      </view>
+      <view wx:if="{{item.type == 3}}">
+        <text class="goods-text">{{item.note}}</text>
+      </view>
+    </view>
+  </view>
+</view>

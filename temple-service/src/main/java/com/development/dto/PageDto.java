@@ -2,6 +2,7 @@ package com.development.dto;
 
 public class PageDto {
     private int id;
+    private int goodsClassId;
     private int current;
     private int size;
 
@@ -11,6 +12,14 @@ public class PageDto {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getGoodsClassId() {
+        return goodsClassId;
+    }
+
+    public void setGoodsClassId(int goodsClassId) {
+        this.goodsClassId = goodsClassId;
     }
 
     public int getCurrent() {
