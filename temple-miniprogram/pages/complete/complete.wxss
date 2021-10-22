@@ -1,0 +1,12 @@
+/* pages/complete/complete.wxss */
+.icon-box {
+  text-align: center;
+  margin: 4rem 0;
+}
+.icon-text {
+  display: block;
+  margin: 1rem 0;
+}
+.icon-box-img {
+  margin: 0;
+}

@@ -6,7 +6,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    goods: {}
+    active: -1,
+    goods: {},
+    callback: false
   },
 
   /**
@@ -29,7 +31,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    if (this.data.callback) {
+      this.buyAction()
+    }
   },
 
   /**
@@ -85,6 +89,89 @@ Page({
         that.setData({
           goods: result.data
         })
+      }
+    });
+  },
+  itemAction: function (e) {
+    var that = this
+    var index = e.currentTarget.dataset.index
+    that.setData({
+      active: index
+    })
+  },
+  homeAction: function () {
+    wx.switchTab({
+      url: '/pages/home/home'
+    })
+  },
+  buyAction: function (e) {
+    var that = this
+    var index = that.data.active
+    if (index < 0) {
+      wx.showToast({
+          title: "请先选择项目",
+          icon: "none",
+          image: "",
+          duration: 1000,
+          mask: false,
+          success: function () {},
+          fail: function () {},
+          complete: function () {}
+      })
+      return
+    }
+    var id = that.data.goods.goodsItemList[index].id
+    var goods = that.data.goods.goodsItemList[index].goods
+    console.log("buy action index: " + index + " id: " + id + " goods: " + goods)
+    console.log(that.data.goods)
+    console.log(app.globalData)
+    // var appid = app.globalData.appid
+    // var openid = app.globalData.openid
+    // var secret = app.globalData.secret
+    if (!app.globalData.userInfo) {
+      wx.navigateTo({
+          url: '/pages/allow/allow'
+      })
+      return
+    }
+    var nickName = app.globalData.userInfo.nickName
+    var gender = app.globalData.userInfo.gender
+    console.log("nickName: " + nickName + " gender: " + gender)
+    var url = app.globalData.url + '/trade/create'
+    wx.request({
+      url: url,
+      data: {
+        appid: app.globalData.appid,
+        secret: app.globalData.secret,
+        openid: app.globalData.openid,
+        nickName: nickName,
+        gender: gender,
+        goodsId: goods,
+        goodsItemId: id
+      },
+      method: 'POST',
+      // header: {},
+      success: function (result) {
+        console.log(result)
+        if (result.data.data) {
+          wx.redirectTo({
+              url: '/pages/complete/complete'
+          })
+          // wx.requestPayment({
+          //   "timeStamp": result.data.data.timeStamp,
+          //   "nonceStr": result.data.data.nonceStr,
+          //   "package": result.data.data.package,
+          //   "signType": "MD5",
+          //   "paySign": result.data.data.paySign,
+          //   "success":function(res){
+          //     wx.navigateBack({
+          //         url: '/pages/complete/complete'
+          //     })
+          //   },
+          //   "fail":function(res){},
+          //   "complete":function(res){}
+          //   })
+        }
       }
     });
   }

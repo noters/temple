@@ -1,9 +1,113 @@
 /* pages/detail.wxss */
-.goods-name {
+.goods {
+  width: 100%;
+}
+.goods .goods-name {
   color: #000000;
   font-size: 1.2rem;
+  display: block;
+  margin: 0.4rem 0;
+  padding: 0.2rem 1rem;
 }
-.goods-title {
+.goods .goods-title {
   color: #000000;
   font-size: 0.8rem;
+  display: block;
+  margin: 0.4rem 0;
+  padding: 0.2rem 1rem;
+}
+.goods .goods-item {
+  /* min-width: 35%; */
+  text-align: center;
+  float: left;
+  border: 1rpx solid #efefef;
+  padding: 0.2rem 0;
+  margin: 0.4rem 0 0.4rem 1rem;
+}
+.goods .goods-item.active{
+  color: #B99266;
+  border-color: #B99266;
+  /* background-color: #ffffff; */
+}
+.goods .goods-text {
+  font-size: 1rem;
+  padding: 0.2rem 1rem;
+}
+.title-name {
+  width: 100%;
+  display: block;
+  clear: both;
+  background-color: #eee;
+  padding: 0.2rem 1rem;
+}
+.item-name {
+  width: 100%;
+  display: block;
+  padding: 0.2rem 1rem;
+  font-size: 0.8rem;
+}
+.title-text-row {
+  font-size: 0.8rem;
+  display: block;
+}
+.title-text {
+  margin-right: 1rem;
+  font-size: 0.8rem;
+}
+.icon-box-img {
+  color: #efefef;
+  vertical-align: middle;
+}
+.detail {
+  width: 100%;
+  margin-top: 0.2rem;
+}
+.detail .goods-detail {
+  margin-top: 0rem;
+  /* margin: 0.2rem; */
+}
+.detail .goods-image {
+  width: 100%;
+}
+.detail .goods-text {
+  font-size: 1rem;
+  padding: 0.2rem 1rem;
+}
+
+.foot {
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  bottom: 0;
+  position: fixed;
+  border-top: 1px solid #f6f6f9;
+  box-shadow: 1px 5px 15px #3232324d;
+  background-color: #fefdfcfa;
+  z-index: 4;
+  width: 100%;
+}
+.foot .home-button {
+  float: left;
+  margin-left: 4.5rem;
+}
+.foot .home-icon {
+  display: block;
+  font-size: 1.5rem;
+  margin: 0 0 -0.4rem -0.2rem;
+}
+.foot .home-text {
+  font-size: 0.6rem;
+}
+.foot .buy-button {
+  float: right;
+  /* padding: 0.7rem; */
+  padding: 0.6rem 0.1rem;
+  margin-top: 0.04rem;
+}
+.foot .buy-text {
+  /* margin: 0.4rem 4rem; */
+  background-color: #b99266;
+  border: 1px solid #B99266;
+  border-radius: 4px;
+  padding: 0.5rem 3.8rem;
 }

@@ -27,7 +27,7 @@ CREATE TABLE `banner` (
   `update_time` datetime(3) DEFAULT current_timestamp(3) ON UPDATE current_timestamp(3) COMMENT '更新日期',
   `status` varchar(2) DEFAULT '1' COMMENT '状态，0禁用，1启用',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT '轮播图';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT '轮播图';
 
 -- ----------------------------
 -- Records of banner
@@ -50,7 +50,7 @@ CREATE TABLE `goods_class` (
   `update_time` datetime(3) DEFAULT current_timestamp(3) ON UPDATE current_timestamp(3) COMMENT '更新日期',
   `status` varchar(2) DEFAULT '1' COMMENT '状态，0禁用，1启用',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT '商品类别';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT '商品类别';
 
 -- ----------------------------
 -- Records of goods_class
@@ -75,7 +75,7 @@ CREATE TABLE `goods` (
   `update_time` datetime(3) DEFAULT current_timestamp(3) ON UPDATE current_timestamp(3) COMMENT '更新日期',
   `status` varchar(2) DEFAULT '1' COMMENT '状态，0禁用，1启用',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT '商品';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT '商品';
 
 -- ----------------------------
 -- Records of goods
@@ -100,13 +100,15 @@ CREATE TABLE `goods_item` (
   `update_time` datetime(3) DEFAULT current_timestamp(3) ON UPDATE current_timestamp(3) COMMENT '更新日期',
   `status` varchar(2) DEFAULT '1' COMMENT '状态，0禁用，1启用',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT '商品套餐';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT '商品套餐';
 
 -- ----------------------------
 -- Records of goods_item
 -- ----------------------------
 INSERT INTO `temple`.`goods_item` (`goods`, `name`, `price`) VALUES ('1', '套餐一', '100');
 INSERT INTO `temple`.`goods_item` (`goods`, `name`, `price`) VALUES ('1', '套餐二', '110');
+INSERT INTO `temple`.`goods_item` (`goods`, `name`, `price`) VALUES ('1', '套餐三', '120');
+INSERT INTO `temple`.`goods_item` (`goods`, `name`, `price`) VALUES ('2', '套餐一', '100');
 
 -- ----------------------------
 -- Table structure for goods_detail
@@ -123,7 +125,7 @@ CREATE TABLE `goods_detail` (
   `update_time` datetime(3) DEFAULT current_timestamp(3) ON UPDATE current_timestamp(3) COMMENT '更新日期',
   `status` varchar(2) DEFAULT '1' COMMENT '状态，0禁用，1启用',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT '商品详情';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT '商品详情';
 
 -- ----------------------------
 -- Records of goods_detail
@@ -134,8 +136,34 @@ INSERT INTO `temple`.`goods_detail` (`goods`, `image`, `type`, `note`) VALUES ('
 INSERT INTO `temple`.`goods_detail` (`goods`, `image`, `type`, `note`) VALUES ('1', '/images/detail4.png', '2', null);
 INSERT INTO `temple`.`goods_detail` (`goods`, `image`, `type`, `note`) VALUES ('1', null, '3', '描述文字');
 INSERT INTO `temple`.`goods_detail` (`goods`, `image`, `type`, `note`) VALUES ('2', '/images/detail5.png', '1', null);
-INSERT INTO `temple`.`goods_detail` (`goods`, `image`, `type`, `note`) VALUES ('3', '/images/detail6.png', '1', null);
-INSERT INTO `temple`.`goods_detail` (`goods`, `image`, `type`, `note`) VALUES ('4', '/images/detail7.png', '1', null);
-INSERT INTO `temple`.`goods_detail` (`goods`, `image`, `type`, `note`) VALUES ('5', '/images/detail8.png', '1', null);
+INSERT INTO `temple`.`goods_detail` (`goods`, `image`, `type`, `note`) VALUES ('2', '/images/detail6.png', '2', null);
+INSERT INTO `temple`.`goods_detail` (`goods`, `image`, `type`, `note`) VALUES ('3', '/images/detail7.png', '1', null);
+INSERT INTO `temple`.`goods_detail` (`goods`, `image`, `type`, `note`) VALUES ('4', '/images/detail8.png', '1', null);
+INSERT INTO `temple`.`goods_detail` (`goods`, `image`, `type`, `note`) VALUES ('5', '/images/detail9.png', '1', null);
+
+-- ----------------------------
+-- Table structure for trade
+-- ----------------------------
+DROP TABLE IF EXISTS `trade`;
+CREATE TABLE `trade` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `trade_no` varchar(50) DEFAULT NULL COMMENT '订单编号',
+  `openid` varchar(200) DEFAULT NULL COMMENT '用户编码',
+  `nick_name` varchar(200) DEFAULT NULL COMMENT '呢称',
+  `gender` varchar(10) DEFAULT NULL COMMENT '性别',
+  `goods_id` varchar(50) DEFAULT NULL COMMENT '商品编号',
+  `goods_name` varchar(200) DEFAULT NULL COMMENT '商品名称',
+  `goods_item_id` varchar(50) DEFAULT NULL COMMENT '项目编号',
+  `goods_item_name` varchar(200) DEFAULT NULL COMMENT '项目名称',
+  `price` varchar(20) DEFAULT NULL COMMENT '价格',
+  `remark` varchar(200) DEFAULT NULL COMMENT '备注',
+  `update_time` datetime(3) DEFAULT current_timestamp(3) ON UPDATE current_timestamp(3) COMMENT '更新日期',
+  `status` varchar(2) DEFAULT '1' COMMENT '状态，0已下单，1已支付',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT '订单';
+
+-- ----------------------------
+-- Records of trade
+-- ----------------------------
 
 SET FOREIGN_KEY_CHECKS=1;

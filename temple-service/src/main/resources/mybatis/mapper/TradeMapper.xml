@@ -1,0 +1,27 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.development.mapper.TradeMapper">
+    <resultMap id="resultMap" type="com.development.entity.Trade">
+        <id column="id" property="id" javaType="int"/>
+        <result column="trade_no" property="tradeNo" javaType="int"/>
+        <result column="openid" property="openid" javaType="int"/>
+        <result column="nick_name" property="nickName" javaType="String"/>
+        <result column="gender" property="gender" javaType="String"/>
+        <result column="goods_id" property="goodsId" javaType="String"/>
+        <result column="goods_name" property="goodsName" javaType="String"/>
+        <result column="goods_item_id" property="goodsItemId" javaType="String"/>
+        <result column="goods_item_name" property="goodsItemName" javaType="String"/>
+        <result column="price" property="price" javaType="String"/>
+        <result column="remark" property="remark" javaType="String"/>
+        <result column="update_time" property="updateTime" javaType="java.util.Date"/>
+        <result column="status" property="status" javaType="String"/>
+    </resultMap>
+
+    <select id="queryListPage" parameterType="com.development.entity.Trade" resultType="com.development.entity.Trade">
+        select * from trade t
+        where t.status = '1'
+        <if test="trade.id != null and trade.id != ''">
+            and t.id = #{trade.id}
+        </if >
+    </select>
+
+</mapper>

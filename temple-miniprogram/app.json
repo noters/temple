@@ -5,7 +5,9 @@
     "pages/logs/logs",
     "pages/user/user",
     "pages/classify/class",
-    "pages/detail/detail"
+    "pages/detail/detail",
+    "pages/allow/allow",
+    "pages/complete/complete"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -4,16 +4,26 @@
     <image class="goods-image" src="{{goods.image}}"></image>
   </view>
 
+
   <view class="goods">
     <text class="goods-name">{{goods.name}}</text>
     <text class="goods-title">{{goods.title}}</text>
-    <view class="goods-item" wx:for="{{goods.goodsItemList}}" wx:key="index"
+    <view class="title-name">
+      <text class="title-text-row">提供服务</text>
+      <icon class="icon-box-img" type="info" size="16"></icon>
+      <text class="title-text">微信认证</text>
+      <icon class="icon-box-img" type="info" size="16"></icon>
+      <text class="title-text">在线客服</text>
+    </view>
+    <view class="item-name">选择项目</view>
+    <view class="goods-item {{active == index?'active':''}}" wx:for="{{goods.goodsItemList}}" wx:key="index"
     bindtap="itemAction" data-index="{{index}}" data-id="{{item.id}}" data-goods="{{item.goods}}">
       <text class="goods-text">{{item.name}}</text>
     </view>
   </view>
 
-  <view>
+  <view class="title-name">详情</view>
+  <view class="detail">
     <view class="goods-detail" wx:for="{{goods.goodsDetailList}}" wx:key="index"
     data-index="{{index}}" data-id="{{item.id}}" data-goods="{{item.goods}}">
       <view wx:if="{{item.type == 2}}">
@@ -22,6 +32,16 @@
       <view wx:if="{{item.type == 3}}">
         <text class="goods-text">{{item.note}}</text>
       </view>
+    </view>
+  </view>
+
+  <view class="foot">
+    <view class="home-button" bindtap="homeAction">
+      <icon class="iconfont icon-home home-icon"></icon>
+      <text class="home-text">首页</text>
+    </view>
+    <view class="buy-button" bindtap="buyAction">
+      <text class="buy-text">购买</text>
     </view>
   </view>
 </view>

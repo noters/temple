@@ -1,0 +1,8 @@
+<!--pages/complete/complete.wxml-->
+<view>
+  <view class="icon-box">
+    <text class="icon-text">支付成功</text>
+    <icon class="icon-box-img" type="success" size="128"></icon>
+  </view>
+  <button bindtap="getSuccess">确定</button>
+</view>

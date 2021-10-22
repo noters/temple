@@ -1,0 +1,10 @@
+/* pages/allow/allow.wxss */
+.user-info {
+  padding-top: 5rem;
+}
+.title-text {
+  padding: 1rem 0;
+  display: block;
+  /* margin: 0 auto; */
+  text-align: center;
+}

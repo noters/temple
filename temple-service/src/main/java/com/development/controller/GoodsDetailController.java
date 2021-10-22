@@ -67,7 +67,13 @@ public class GoodsDetailController {
             List<GoodsDetail> goodsDetailList = goodsDetailService.queryList(goodsDetail);
             goodsDto.setGoodsDetailList(goodsDetailList);
             if (goodsDetailList != null && goodsDetailList.size() > 0) {
-                goodsDto.setImage(goodsDetailList.get(0).getImage());
+                for (GoodsDetail goodsDetail1 : goodsDetailList) {
+                    //类型，0缩略图，1主图，2详情图，3描述文字
+                    if ("1".equals(goodsDetail1.getType())) {
+                        goodsDto.setImage(goodsDetail1.getImage());
+                        break;
+                    }
+                }
             }
             try {
                 String result = mapper.writeValueAsString(goodsDto);
